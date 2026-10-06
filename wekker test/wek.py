@@ -9,3 +9,4 @@ class WAKKER_WORDEN_AUKE_SPECIAL:
 root = tk.Tk()
 WAKKER_WORDEN_AUKE_SPECIAL(root)
 root.mainloop()
+print("ik ben dood")
