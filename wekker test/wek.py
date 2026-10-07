@@ -1,12 +1,26 @@
 import tkinter as tk
 
-class WAKKER_WORDEN_AUKE_SPECIAL:
+class FactoryGame:
     def __init__(self, root):
         self.root = root
         self.root.title("wakker worden auke special")
         self.root.geometry("760x520")
 
+        self.background = tk.PhotoImage(file="achtergrond.png")
+
+        self.background_label = tk.Label(
+            root,
+            image=self.background
+        )
+
+        self.background_label.place(
+            x=0,
+            y=0,
+            relwidth=1,
+            relheight=1
+        )
+
+
 root = tk.Tk()
-WAKKER_WORDEN_AUKE_SPECIAL(root)
+FactoryGame(root)
 root.mainloop()
-print("ik ben dood")
