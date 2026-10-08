@@ -1,4 +1,6 @@
 import tkinter as tk
+import os
+
 
 class FactoryGame:
     def __init__(self, root):
@@ -6,8 +8,16 @@ class FactoryGame:
         self.root.title("wakker worden auke special")
         self.root.geometry("760x520")
 
-        self.background = tk.PhotoImage(file="wekker_test/achtergrond.png")
+        # Zoek de afbeelding in dezelfde map als dit Python-bestand
+        image_path = os.path.join(
+            os.path.dirname(__file__),
+            "achtergrond.png"
+        )
 
+        # Afbeelding laden
+        self.background = tk.PhotoImage(file=image_path)
+
+        # Achtergrond plaatsen
         self.background_label = tk.Label(
             root,
             image=self.background
@@ -16,6 +26,8 @@ class FactoryGame:
         self.background_label.place(
             x=0,
             y=0,
+            relwidth=1,
+            relheight=1
         )
 
 
