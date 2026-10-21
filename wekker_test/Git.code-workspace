@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "../../OneDrive - ROC Alfa-college/Softwaredevloper/Git"
+		},
+		{
+			"name": "wekker test",
+			"path": "../wekker test"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "Git"
+	}
+}
