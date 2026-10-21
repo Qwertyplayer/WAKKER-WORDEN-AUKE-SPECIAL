@@ -1,6 +1,8 @@
+
 import tkinter as tk
 import os
 from time import strftime
+from math import floor
 
 root = tk.Tk()
 root.title("Wakker Worden Auke Special")
@@ -12,37 +14,70 @@ image_path = os.path.join(
     "achtergrond.png"
 )
 
-image = tk.PhotoImage(file=image_path)
+original_image = tk.PhotoImage(file=image_path)
 
-label = tk.Label(root, image=image)
-label.place(x=0, y=0, relwidth=1, relheight=1)
+canvas = tk.Canvas(root, highlightthickness=0)
+canvas.pack(fill="both", expand=True)
 
-#hoe de klok eruit ziet
-clock = tk.Label(
-    root,
-    font=("Arial", 24, "bold"),
-    fg="white",
-    bg="black",
-    padx=20,
-    pady=10
+image = original_image
+
+background = canvas.create_image(
+    0, 0,
+    image=image,
+    anchor="nw"
 )
 
-clock.place(relx=0.6, rely=0.08, anchor="ne")
+clock = canvas.create_text(
+    0, 0,
+    text="",
+    font=("Arial", 24, "bold"),
+    fill="white",
+    anchor="ne"
+)
 
-#update elke seconde de klok
+
+def resize_window(event):
+    global image
+
+    if event.widget != canvas:
+        return
+
+    width = event.width
+    height = event.height
+
+    # Vergroot de afbeelding zodat het hele venster gevuld wordt
+    scale = max(
+        width / original_image.width(),
+        height / original_image.height()
+    )
+
+    if scale >= 1:
+        factor = max(1, int(scale))
+        image = original_image.zoom(factor, factor)
+    else:
+        factor = max(1, int(1 / scale))
+        image = original_image.subsample(factor, factor)
+
+    canvas.itemconfig(background, image=image)
+
+    # Afbeelding in het midden plaatsen
+    canvas.coords(
+        background,
+        (width - image.width()) / 2,
+        (height - image.height()) / 2
+    )
+
+    # Klok op zijn plek houden
+    canvas.coords(clock, width * 0.6, height * 0.08)
+
+    size = max(24, int(width / 64))
+    canvas.itemconfig(clock, font=("Arial", size, "bold"))
+
 def update_clock():
-    current_time = strftime("%H:%M:%S")
-    clock.config(text=current_time)
+    canvas.itemconfig(clock, text=strftime("%H:%M:%S"))
     root.after(1000, update_clock)
 
-# zorgt ervoor dat de klok grote bij het venster past
-def resize_clock(event):
-    if event.widget == root:
-        size = max(24, int(event.width / 64))
-        clock.config(font=("Arial", size, "bold"))
-
-root.bind("<Configure>", resize_clock)
+canvas.bind("<Configure>", resize_window)
 
 update_clock()
-
 root.mainloop()
