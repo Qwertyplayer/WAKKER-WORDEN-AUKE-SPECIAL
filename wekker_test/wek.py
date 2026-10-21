@@ -80,7 +80,7 @@ clock = canvas.create_text(
     text="",
     font=("Arial", 24, "bold"),
     fill="white",
-    anchor="ne"
+    anchor="center"
 )
 
 # Timer instellen op 5 minuten
@@ -100,7 +100,7 @@ timer_text = canvas.create_text(
     text="00:00",
     font=("Arial", 24, "bold"),
     fill="white",
-    anchor="ne"
+    anchor="center"
 )
 
 
@@ -158,7 +158,7 @@ def resize_window(event):
     )
 
     # Klok op zijn plek houden
-    canvas.coords(clock, width * 0.6, height * 0.08)
+    canvas.coords(clock, width * 0.509, height * 0.12)
 
     size = max(24, int(width / 64))
     canvas.itemconfig(clock, font=("Arial", size, "bold"))
@@ -180,8 +180,8 @@ def resize_window(event):
     # Timer onder de titel
     canvas.coords(
         timer_text,
-        width * 0.6,
-        height * 0.30
+        width * 0.515,
+        height * 0.33
     )
 
     canvas.itemconfig(
