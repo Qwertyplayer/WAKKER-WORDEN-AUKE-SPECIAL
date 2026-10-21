@@ -1,6 +1,7 @@
 
 import tkinter as tk
 import os
+import winsound
 from time import strftime
 from math import floor
 
@@ -78,6 +79,19 @@ def update_clock():
     root.after(1000, update_clock)
 
 canvas.bind("<Configure>", resize_window)
+sound_path = os.path.join(
+    os.path.dirname(__file__),
+    "alarm.geluid.wav"
+)
 
+def play_alarm():
+    winsound.PlaySound(
+        sound_path,
+        winsound.SND_FILENAME | winsound.SND_ASYNC
+    )
+
+def stop_alarm():
+    winsound.PlaySound(None, winsound.SND_PURGE)
 update_clock()
 root.mainloop()
+    
