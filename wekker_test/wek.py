@@ -61,7 +61,7 @@ title = canvas.create_text(
 
 subtitle = canvas.create_text(
     0, 0,
-    text="AUKE SPECIAL",
+    text="Wekker",
     fill="#93c5fd",
     font=("Arial", 12, "bold"),
     anchor="center"
