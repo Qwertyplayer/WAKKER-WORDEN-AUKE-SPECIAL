@@ -1,6 +1,6 @@
 import tkinter as tk
 import os
-from time import strftime
+import time
 
 
 class WAKKER_WORDEN_AUKE_SPECIAL:
@@ -95,7 +95,7 @@ class WAKKER_WORDEN_AUKE_SPECIAL:
 
     # Klok elke seconde updaten
     def update_clock(self):
-        current_time = strftime("%H:%M:%S")
+        current_time = time.strftime("%H:%M:%S")
         self.clock.config(text=current_time)
 
         self.root.after(1000, self.update_clock)
