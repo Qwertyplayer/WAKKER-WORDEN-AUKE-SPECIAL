@@ -53,7 +53,7 @@ clock = canvas.create_text(
 
 title = canvas.create_text(
     0, 0,
-    text="WAKKER WORDEN",
+    text="",
     fill=WHITE,
     font=("Arial", 22, "bold"),
     anchor="center"
