@@ -62,7 +62,7 @@ title = canvas.create_text(
 subtitle = canvas.create_text(
     0, 0,
     text="Wekker",
-    fill="#93c5fd",
+    fill="#333e4b",
     font=("Arial", 12, "bold"),
     anchor="center"
 )
